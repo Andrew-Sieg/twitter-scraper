@@ -13,9 +13,6 @@ import snscrape.modules.twitter as sntwitter
 import pandas as pd
 import openpyxl
 
-# Below are two ways of scraping using the Python Wrapper.
-# Comment or uncomment as you need. If you currently run the script as is it will scrape both queries
-# then output two different csv files.
 
 # Query by username
 # Setting variables to be used below
@@ -29,11 +26,6 @@ for i,tweet in enumerate(sntwitter.TwitterSearchScraper('twin spires since:2023-
     if i>maxTweets:
         break
     tweet_text.append([tweet.rawContent, tweet.user.username])
-
-# for i,tweet in enumerate(sntwitter.TwitterSearchScraper('launch darkly problems since:2022-05-27 until:2022-06-27').get_items()):
-#     if i>maxTweets:
-#         break
-#     tweet_text.append([tweet.content,tweet.user.username])
 
 ####################################################################################################################################
 
