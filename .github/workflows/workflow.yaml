@@ -13,40 +13,40 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v2
 
-  - name: Configure AWS Credentials
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    run: |
-      aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-      aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-      aws configure set default.region us-east-1
+      - name: Configure AWS Credentials
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+          aws configure set default.region us-east-1
 
-    - name: Install AWS CLI
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y awscli
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
         
-    - name: Deploy CloudFormation Stack
-      run: |
-        aws cloudformation deploy --stack-name twitter-scraper --template-file cloudformation.yaml --debug
+      - name: Deploy CloudFormation Stack
+        run: |
+          aws cloudformation deploy --stack-name twitter-scraper --template-file cloudformation.yaml --debug
         
-    - name: Docker Login
-      uses: docker/login-action@v1
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Docker Login
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Install Dependencies
-      run: |
-        pip install -r requirements.txt
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
         
-    - name: Run Tests
-      run: |
-        pytest
+      - name: Run Tests
+        run: |
+          pytest
         
-    - name: Build and Push Docker Image
-      uses: docker/build-push-action@v2
-      with:
-        push: true
-        tags: adsieg01/twitter-scraper:latest
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: adsieg01/twitter-scraper:latest
