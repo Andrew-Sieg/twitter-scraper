@@ -25,10 +25,10 @@ maxTweets = 1000
 tweet_text = []
 
 # Using TwitterSearchScraper to scrape data 
-for i,tweet in enumerate(sntwitter.TwitterSearchScraper('cousin willie popcorn since:2022-05-27 until:2023-04-09').get_items()):
+for i,tweet in enumerate(sntwitter.TwitterSearchScraper('twin spires since:2023-04-10 until:2023-04-17').get_items()):
     if i>maxTweets:
         break
-    tweet_text.append([tweet.content,tweet.user.username])
+    tweet_text.append([tweet.rawContent, tweet.user.username])
 
 # for i,tweet in enumerate(sntwitter.TwitterSearchScraper('launch darkly problems since:2022-05-27 until:2022-06-27').get_items()):
 #     if i>maxTweets:
@@ -44,6 +44,6 @@ tweets_df1 = pd.DataFrame(tweet_text, columns=['tweet_text','Username'])
 # tweets_df1.head()
 
 # Export dataframe into an Excel file
-tweets_df1.to_excel('cousin-willie.xlsx', index = False, header=True)
+tweets_df1.to_excel('twin-spires.xlsx', index = False, header=True)
 
-os.system("start EXCEL.EXE cousin-willie.xlsx")
+os.system("start EXCEL.EXE twin-spires.xlsx")
