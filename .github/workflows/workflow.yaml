@@ -21,8 +21,8 @@ jobs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
-      role-to-assume: arn:aws:iam::699114717119:role/aws-service-role/elasticbeanstalk.amazonaws.com/AWSServiceRoleForElasticBeanstalk
-      aws-region: us-east-1
+        role-to-assume: arn:aws:iam::699114717119:role/aws-service-role/elasticbeanstalk.amazonaws.com/AWSServiceRoleForElasticBeanstalk
+        aws-region: us-east-1
         
     - name: Deploy CloudFormation Stack
       run: |
