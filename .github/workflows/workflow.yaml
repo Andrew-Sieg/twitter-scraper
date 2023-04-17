@@ -15,7 +15,6 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        npm install
         pip install -r requirements.txt
         
     - name: Run Tests
@@ -26,4 +25,4 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: username/repo:latest
+        tags: adsieg01/repo:latest
