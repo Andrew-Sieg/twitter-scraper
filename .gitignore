@@ -1,0 +1,17 @@
+# ignore Python virtual environments
+venv/
+myenv/
+
+# ignore pipenv dependencies
+Pipfile.lock
+
+# ignore build artifacts
+build/
+dist/
+*.egg-info/
+
+# ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
