@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Elastic Beanstalk environment with Docker for Python app'
+Resources:
+  MyElasticBeanstalkApplication:
+    Type: 'AWS::ElasticBeanstalk::Application'
+    Properties:
+      Description: 'Twitter Scraper APP'
+      ApplicationName: 'Twitter-Scraper'
+  MyElasticBeanstalkEnvironment:
+    Type: 'AWS::ElasticBeanstalk::Environment'
+    Properties:
+      Description: 'My Elastic Beanstalk environment for Python app'
+      EnvironmentName: 'MyEBEnvironment'
+      ApplicationName: !Ref MyElasticBeanstalkApplication
+      SolutionStackName: '64bit Amazon Linux 2 v5.4.2 running Docker 19.03.13-ce'
+      OptionSettings:
+        - Namespace: 'aws:elasticbeanstalk:container:docker'
+          OptionName: 'Image'
+          Value: 'adsieg01/twitter-scraper:latest'
+        - Namespace: 'aws:elasticbeanstalk:environment'
+          OptionName: 'EnvironmentType'
+          Value: 'SingleInstance'
