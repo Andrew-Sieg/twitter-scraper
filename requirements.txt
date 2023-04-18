@@ -2,3 +2,4 @@ snscrape
 pandas
 openpyxl
 pytest
+awsebcli==3.20.0
