@@ -18,5 +18,5 @@ Resources:
           OptionName: 'EnvironmentType'
           Value: 'SingleInstance'
         - Namespace: 'aws:elasticbeanstalk:container:myapp'
-          OptionName: 'Image'
-          Value: 'adsieg01/twitter-scraper:latest'
+          OptionName: 'ContainerConfig'
+          Value: '{"Image": "twitterscraper:latest"}'
