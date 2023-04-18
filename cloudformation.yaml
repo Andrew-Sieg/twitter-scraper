@@ -1,22 +1,21 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'Elastic Beanstalk environment with Docker image'
+Description: 'Create EC2 instance and run Docker container'
 Resources:
-  MyElasticBeanstalkApplication:
-    Type: 'AWS::ElasticBeanstalk::Application'
+  MyInstance:
+    Type: 'AWS::EC2::Instance'
     Properties:
-      Description: 'My Elastic Beanstalk application'
-      ApplicationName: 'MyEBApplication'
-  MyElasticBeanstalkEnvironment:
-    Type: 'AWS::ElasticBeanstalk::Environment'
-    Properties:
-      Description: 'My Elastic Beanstalk environment for Docker image'
-      EnvironmentName: 'MyEBEnvironment'
-      ApplicationName: !Ref MyElasticBeanstalkApplication
-      SolutionStackName: '64bit Amazon Linux 2 v3.5.6 running Docker'
-      OptionSettings:
-        - Namespace: 'aws:elasticbeanstalk:environment'
-          OptionName: 'EnvironmentType'
-          Value: 'SingleInstance'
-        - Namespace: 'aws:elasticbeanstalk:container:MyEBApplication'
-          OptionName: 'ContainerConfig'
-          Value: '{"Image": "twitterscraper:latest"}'
+      InstanceType: 't2.micro'
+      ImageId: ami-0c94855ba95c71c99
+      KeyName: my-key-pair
+      SecurityGroupIds:
+        - sg-0123456789abcdef
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          echo "Installing Docker..."
+          sudo yum update -y
+          sudo amazon-linux-extras install docker -y
+          sudo service docker start
+          sudo usermod -a -G docker ec2-user
+          echo "Starting Docker container..."
+          sudo docker run -p 80:80 adsieg01/twitter-scraper:latest
