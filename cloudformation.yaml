@@ -8,7 +8,7 @@ Resources:
       ImageId: ami-0c94855ba95c71c99
       KeyName: my-key-pair
       SecurityGroupIds:
-        - sg-0123456789abcdef
+        - !Ref 'AWS::NoValue'
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash
