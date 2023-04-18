@@ -29,7 +29,7 @@ jobs:
         
       - name: Deploy CloudFormation Stack # This is the step that deploys the stack
         run: |
-          aws cloudformation deploy --stack-name twitter-scraper --template-file cloudformation.yaml --capabilities CAPABILITY_NAMED_IAM
+          aws cloudformation deploy --stack-name twitter-scraper --template-file cloudformation.yaml --platform-name "Docker" --platform-version "3.5.6" --solution-stack-name "64bit Amazon Linux 2 v3.5.6 running Docker" --capabilities CAPABILITY_NAMED_IAM
         
       - name: Docker Login
         uses: docker/login-action@v1
