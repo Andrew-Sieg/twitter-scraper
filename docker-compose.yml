@@ -3,5 +3,3 @@ version: '3'
 services:
   app:
     image: adsieg01/twitter-scraper:latest
-    ports:
-      - "80:80"
