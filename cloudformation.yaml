@@ -17,6 +17,6 @@ Resources:
         - Namespace: 'aws:elasticbeanstalk:environment'
           OptionName: 'EnvironmentType'
           Value: 'SingleInstance'
-        - Namespace: 'aws:elasticbeanstalk:container:myapp'
+        - Namespace: 'aws:elasticbeanstalk:container:MyEBApplication'
           OptionName: 'ContainerConfig'
           Value: '{"Image": "twitterscraper:latest"}'
