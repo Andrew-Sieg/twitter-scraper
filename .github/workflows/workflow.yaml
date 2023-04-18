@@ -27,7 +27,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y awscli
         
-      - name: Deploy CloudFormation Stack
+      - name: Deploy CloudFormation Stack # This is the step that deploys the stack
         run: |
           aws cloudformation deploy --stack-name twitter-scraper --template-file cloudformation.yaml --capabilities CAPABILITY_NAMED_IAM
         
