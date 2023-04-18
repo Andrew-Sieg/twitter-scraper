@@ -6,7 +6,6 @@ Resources:
     Properties:
       InstanceType: 't2.micro'
       ImageId: ami-0c94855ba95c71c99
-      KeyName: my-key-pair
       SecurityGroupIds:
         - !Ref 'AWS::NoValue'
       UserData:
