@@ -14,9 +14,6 @@ Resources:
       ApplicationName: !Ref MyElasticBeanstalkApplication
       SolutionStackName: '64bit Amazon Linux 2 v3.5.6 running Docker'
       OptionSettings:
-        - Namespace: 'aws:elasticbeanstalk:container:docker'
-          OptionName: 'Image'
-          Value: 'adsieg01/twitter-scraper:latest'
         - Namespace: 'aws:elasticbeanstalk:environment'
           OptionName: 'EnvironmentType'
           Value: 'SingleInstance'
