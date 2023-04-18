@@ -20,3 +20,29 @@ Resources:
         - Namespace: 'aws:elasticbeanstalk:environment'
           OptionName: 'EnvironmentType'
           Value: 'SingleInstance'
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: "Elastic Beanstalk configuration"
+        Parameters:
+          - Image
+    ParameterLabels:
+      Image:
+        default: "Docker image"
+  AWS::CloudFormation::Init:
+    config:
+      files:
+        "/tmp/eb_env.yaml":
+          content: !Sub |
+            option_settings:
+              - namespace: aws:elasticbeanstalk:container:docker
+                option_name: Image
+                value: !Ref Image
+      commands:
+        01_create_eb_env:
+          command: |
+            /opt/elasticbeanstalk/bin/eb create ${EnvName} \
+            --elb-type application \
+            --region ${AWS::Region} \
+            --platform "Docker 20.10.8 on 64bit Amazon Linux 2"
