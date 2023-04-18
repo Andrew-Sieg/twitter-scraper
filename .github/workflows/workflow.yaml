@@ -29,7 +29,6 @@ jobs:
         
       - name: Deploy CloudFormation Stack
         run: |
-          aws cloudformation delete-stack --stack-name twitter-scraper
           aws cloudformation deploy --stack-name twitter-scraper --template-file cloudformation.yaml --capabilities CAPABILITY_NAMED_IAM
         
       - name: Docker Login
