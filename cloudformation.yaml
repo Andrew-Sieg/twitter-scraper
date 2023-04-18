@@ -11,7 +11,7 @@ Resources:
     Properties:
       Description: 'My Elastic Beanstalk environment for Python app'
       EnvironmentName: 'MyEBEnvironment'
-      ApplicationName: !Ref MyElasticBeanstalkApplication
+      ApplicationName: 'MyElasticBeanstalkApplication'
       SolutionStackName: '64bit Amazon Linux 2 v3.5.6 running Docker'
       OptionSettings:
         - Namespace: 'aws:elasticbeanstalk:environment'
